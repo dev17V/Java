@@ -1,136 +1,95 @@
-import java.util.Scanner; // import the Scanner class 
+import java.util.Scanner;
 import java.net.*;
-import java.io.*;
+import java.io.IOException;
 
-public class client{
+public class Client {
     public static void main(String[] args) throws IOException {
-          Socket s = new Socket("localhost", 1771); //1771 is the port
-          Runtime.getRuntime().exec("clear");
-          login();   
+        Socket s = new Socket("localhost", 1771);
+        clearConsole();
+        login();
     }
-    
+
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static void login() {
-        Scanner myuser = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("â•”â•username \nâ–¼");
-        String userName = myuser.nextLine();  // Reads username
-        
-        //if statement needs to be here to check username
-        if (userName.contains("root")) {
-            System.out.flush();
-            System.out.println("\r\n");
-            System.out.println("\r\n");
-            System.out.println("\r\r\r\r\r\r\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\r\r\r\r\r");
-            System.out.flush();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter username:");
+        String username = scanner.nextLine();
+
+        // Check username
+        if (username.contains("root")) {
+            clearConsole();
         } else {
-            System.out.println(userName+" | NOT IN DATABASE");
+            System.out.println(username + " | NOT IN DATABASE");
         }
-        
-        Scanner mypass = new Scanner(System.in);  // Create a Scanner object        
-        System.out.println("â•”â•password \nâ–¼");
-        String passWord = mypass.nextLine();  // Reads password
-        
-        //if statement needs to be here to check password
-        if (passWord.contains("root")) {
-            System.out.flush();
-            System.out.println("\r\n");
-            System.out.println("\r\r\r\r\r\r\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\r\r\r\r\r");
-            System.out.flush();
+
+        System.out.println("Enter password:");
+        String password = scanner.nextLine();
+
+        // Check password
+        if (password.contains("root")) {
+            clearConsole();
         } else {
-            System.out.println(userName+" | INVALID USER OR PASS");
+            System.out.println(username + " | INVALID USER OR PASS");
         }
-        
+
         menu();
     }
-    
+
     public static void menu() {
-        String ban1 = "â•¦ â•¦â•¦â•¦  â•¦â•”â•â•—â•”â•—â•”â•”â•â•—â•”â•¦â•—";
-        String ban2 = "â• â•â•£â•‘â•šâ•—â•”â•â•‘â•£ â•‘â•‘â•‘â•‘â•£  â•‘";
-        String ban3 = "â•© â•©â•© â•šâ• â•šâ•â•â•â•šâ•â•šâ•â• â•©";
-        System.out.println(ban1);
-        System.out.println(ban2);
-        System.out.println(ban3);
-        
+        // Print menu banner
+        System.out.println("=== HIVENET MENU ===\n");
+
         String helpMenu = (
-              "\nattack  |  shows how to attack \nmethods |  shows ddos method\n"        
+            "attack  |  shows how to attack \n" +
+            "methods |  shows ddos method\n"
         );
-        
-        String myMethods =   "\n udpflood"; //finna add udpflood function
-        
+
+        String myMethods = "\n udpflood"; //finna add udpflood function
+
         while (true) {
             Scanner hiveInput = new Scanner(System.in);  // Create a Scanner object
-            System.out.println("â•”â•HIVENETâ•‘\nâ–¼");
+            System.out.println("=== COMMAND ===\n");
             String myInput = hiveInput.nextLine();  //Reads input
-            
+
             if (myInput.contains("?")) {
                 System.out.println(helpMenu);
             }
-            
+
             if (myInput.contains("methods")) {
                 System.out.println(myMethods);
             }
-            
+
             if (myInput.contains("attack")) {
                 System.out.println("Type ! First");
                 System.out.println("USAGE: <METHOD> <ip> <port> <time>");
             }
-            
-            String attackbanA = " â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—  â–ˆâ–ˆâ•—";
-            String attackbanB = "â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â•šâ•â•â–ˆâ–ˆâ•”â•â•â•â•šâ•â•â–ˆâ–ˆâ•”â•â•â•â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•‘ â–ˆâ–ˆâ•”â•";
-            String attackbanC = "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘      â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â• ";
-            String attackbanD = "â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘      â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•â–ˆâ–ˆâ•— ";
-            String attackbanE = "â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘      â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•—";
-            String attackbanF = "â•šâ•â•  â•šâ•â•   â•šâ•â•      â•šâ•â•   â•šâ•â•  â•šâ•â• â•šâ•â•â•â•â•â•â•šâ•â•  â•šâ•â•";
-            String attackbanG = "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—";
-            String attackbanH = "â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘â•šâ•â•â–ˆâ–ˆâ•”â•â•â•";
-            String attackbanI = "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•”â–ˆâ–ˆâ•— â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   ";
-            String attackbanJ = "â•šâ•â•â•â•â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘";
-            String attackbanK = "â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘";
-            String attackbanL = "â•šâ•â•â•â•â•â•â•â•šâ•â•â•â•â•â•â•â•šâ•â•  â•šâ•â•â•â•   â•šâ•â•";
-            
+
             if (myInput.contains("!")) {
                 System.out.println("Loading...\n");
                 Scanner attackMethod = new Scanner(System.in);  // Create a Scanner object
-                System.out.println("â•”â•METHODâ•‘\nâ–¼");
+                System.out.println("=== METHOD ===\n");
                 String myMethodInput = attackMethod.nextLine();  //Reads input
                 Scanner target = new Scanner(System.in);  // Create a Scanner object
-                System.out.println("â•”â•IPâ•‘\nâ–¼");
+                System.out.println("=== IP ===\n");
                 String ipInput = target.nextLine();  //Reads input
                 Scanner targetport = new Scanner(System.in);  // Create a Scanner object
-                System.out.println("â•”â•PORTâ•‘\nâ–¼");
+                System.out.println("=== PORT ===\n");
                 String portInput = targetport.nextLine();  //Reads input
                 Scanner attackTime = new Scanner(System.in);  // Create a Scanner object
-                System.out.println("â•”â•TIMEâ•‘\nâ–¼");
+                System.out.println("=== TIME ===\n");
                 String timeInput = attackTime.nextLine();  //Reads input
-                System.out.println(attackbanA);
-                System.out.println(attackbanB);
-                System.out.println(attackbanC);
-                System.out.println(attackbanD);
-                System.out.println(attackbanE);
-                System.out.println(attackbanF);
-                System.out.println(attackbanG);
-                System.out.println(attackbanH);
-                System.out.println(attackbanI);
-                System.out.println(attackbanJ);
-                System.out.println(attackbanK);
-                System.out.println(attackbanL);
+                System.out.println("Loading Attack...");
             }
 
             if (myInput.contains("clear")) {
-                System.out.println("\033[H\033[2J");  
-                System.out.flush();
-                //System.out.println("\r\r\r\r\r\r\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r");
-                System.out.flush();
-                System.out.println(ban1);
-                System.out.println(ban2);
-                System.out.println(ban3); 
+                clearConsole();
+                System.out.println("=== HIVENET MENU ===\n");
             }
-            
-        }   
+        }
     }
-  }
-
-
-
-
-
-
+}
